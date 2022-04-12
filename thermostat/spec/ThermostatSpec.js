@@ -66,5 +66,18 @@ describe('Thermostat', function() {
       thermostat.powerSaveToggle()
       expect(thermostat.powerSavingMode()).toEqual(true);
     })
+    it('sets max temp to 25 when turned on', function() {
+      for(let i=0; i<6; i++) {
+        thermostat.up()
+      }
+      expect(thermostat.temperature()).toEqual(25);
+    })
+    it('sets max temp to 32 when turned off', function() {
+      thermostat.powerSaveToggle()
+      for(let i=0; i<20; i++) {
+        thermostat.up()
+      }
+      expect(thermostat.temperature()).toEqual(32);
+    })
   })
 })

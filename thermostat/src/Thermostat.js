@@ -7,6 +7,12 @@ class Thermostat {
     if(this._temperature < 10) {
       return 10
     }
+    if(this._powerSavingMode === true && this._temperature > 25) {
+      return 25
+    }
+    if(this._temperature > 32) {
+      return 32
+    }
     return this._temperature
   }
   
