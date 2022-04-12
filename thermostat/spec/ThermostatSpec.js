@@ -80,4 +80,37 @@ describe('Thermostat', function() {
       expect(thermostat.temperature()).toEqual(32);
     })
   })
+
+  describe('reset', function() {
+    it('resets temperature to 20', function() {
+      thermostat.up()
+      thermostat.up()
+      thermostat.up()
+      thermostat.up()
+      thermostat.reset()
+      expect(thermostat.temperature()).toEqual(20);
+    })
+  })
+
+  describe('usage', function() {
+    it('returns "low-usage" when temperature is lower than 18', function() {
+      for(let i=0; i<5; i++) {
+        thermostat.down()
+      }
+      expect(thermostat.usage()).toEqual("low-usage");
+    })
+    it('returns "medium-usage" when temperature is greater than 17 and lower than 26', function() {
+      for(let i=0; i<2; i++) {
+        thermostat.down()
+      }
+      expect(thermostat.usage()).toEqual("medium-usage")
+    })
+    it('returns "high-usage" when temperature is higher than 25', function() {
+      thermostat.powerSaveToggle()
+      for(let i=0; i<8; i++) {
+        thermostat.up()
+      }
+      expect(thermostat.usage()).toEqual("high-usage");
+    })
+  })
 })
