@@ -21,16 +21,13 @@ describe('Thermostat', function() {
 
     it('cannot go below 10 degree after using up and down', function() {
       for(let i=0; i<11; i++) {
-        thermostat.down();
-        console.log('down ', i)
+        thermostat.down()
       }
       for(let i=0; i<4; i++) {
-        thermostat.up();
-        console.log('up', i)
+        thermostat.up()
       }
       for(let i=0; i<6; i++) {
-        thermostat.down();
-        console.log('down', i)
+        thermostat.down()
       }
       expect(thermostat.temperature()).toEqual(10);
     })
@@ -53,6 +50,21 @@ describe('Thermostat', function() {
       thermostat.down()
       thermostat.down()
       expect(thermostat.temperature()).toEqual(18);
+    })
+  })
+  
+  describe('Power Saving Mode', function() {
+    it('is on by default', function() {
+      expect(thermostat.powerSavingMode()).toEqual(true);
+    })
+    it('can be turned off', function() {
+      thermostat.powerSaveToggle()
+      expect(thermostat.powerSavingMode()).toEqual(false);
+    })
+    it('can be turned off and on again', function() {
+      thermostat.powerSaveToggle()
+      thermostat.powerSaveToggle()
+      expect(thermostat.powerSavingMode()).toEqual(true);
     })
   })
 })
