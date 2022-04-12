@@ -5,8 +5,12 @@ class Thermostat {
   temperature () {
     return this._temperature
   }
+
+  down() {
+    this._temperature -= 1
+  }
 }
 
 Thermostat.prototype.up = function() {
-  this._temperature += 1;
+  this._temperature += 1
 }

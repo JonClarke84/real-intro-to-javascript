@@ -18,4 +18,16 @@ describe('Thermostat', function() {
       expect(thermostat.temperature()).toEqual(21);
     })
   })
+
+  describe('#down', function() {
+    it('decreases temperature by 1 degree', function() {
+      thermostat.down()
+      expect(thermostat.temperature()).toEqual(19);
+    })
+    it('decreases by two degrees when pressed twice', function() {
+      thermostat.down()
+      thermostat.down()
+      expect(thermostat.temperature()).toEqual(18);
+    })
+  })
 })
