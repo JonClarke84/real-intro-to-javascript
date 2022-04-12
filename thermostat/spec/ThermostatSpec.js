@@ -7,9 +7,34 @@ describe('Thermostat', function() {
   beforeEach(() => {
     thermostat = new Thermostat();
   })
+  describe('#temperature', function() {
+    it('starts at 20 degrees', function() {
+      expect(thermostat.temperature()).toEqual(20);
+    })
 
-  it('starts at 20 degrees', function() {
-    expect(thermostat.temperature()).toEqual(20);
+    it('cannot go below 10 degrees using only the down method', function() {
+      for(let i=0; i<11; i++) {
+        thermostat.down();
+      }
+      expect(thermostat.temperature()).toEqual(10);
+    })
+
+    it('cannot go below 10 degree after using up and down', function() {
+      for(let i=0; i<11; i++) {
+        thermostat.down();
+        console.log('down ', i)
+      }
+      for(let i=0; i<4; i++) {
+        thermostat.up();
+        console.log('up', i)
+      }
+      for(let i=0; i<6; i++) {
+        thermostat.down();
+        console.log('down', i)
+      }
+      expect(thermostat.temperature()).toEqual(10);
+    })
+
   })
 
   describe('#up', function() {

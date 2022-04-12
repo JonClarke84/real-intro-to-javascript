@@ -3,6 +3,9 @@ class Thermostat {
     this._temperature = 20;
   }
   temperature () {
+    if(this._temperature < 10) {
+      return 10
+    }
     return this._temperature
   }
 
