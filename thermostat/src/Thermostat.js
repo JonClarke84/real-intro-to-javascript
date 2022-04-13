@@ -1,3 +1,5 @@
+'use strict';
+
 class Thermostat {
   constructor() {
     this._temperature = 20
@@ -22,6 +24,13 @@ class Thermostat {
 
   down() {
     this._temperature -= 1
+  }
+
+  psmStatus() {
+    if (this._powerSavingMode === true) {
+    return "On"
+    }
+    return "Off"
   }
 }
 
