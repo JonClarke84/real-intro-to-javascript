@@ -2,35 +2,43 @@
 
 class Thermostat {
   constructor() {
+    this.MINIMUM_TEMPERATURE = 10
     this._temperature = 20
     this._powerSavingMode = true
   }
   temperature () {
-    if(this._temperature < 10) {
-      return 10
-    }
     if(this._powerSavingMode === true && this._temperature > 25) {
-      return 25
-    }
-    if(this._temperature > 32) {
-      return 32
+      this._temperature = 25
     }
     return this._temperature
   }
   
   up() {
+    if(this._powerSavingMode === true && this._temperature >= 25) {
+      return;
+    }
+    if(this._temperature >= 32) {  
+      return;
+    }
     this._temperature += 1
   }
 
   down() {
+    if(this._temperature <= 10) {
+      return;
+    }
     this._temperature -= 1
   }
 
   psmStatus() {
     if (this._powerSavingMode === true) {
-    return "On"
+    return "on"
     }
-    return "Off"
+    return "off"
+  }
+
+  isMinimumTemp() {
+    return this._temperature === this.MINIMUM_TEMPERATURE;
   }
 }
 

@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelector('#powersaving-toggle').addEventListener('click', () => {
     thermostat.powerSaveToggle();
-    document.querySelector('#power-saving-status').innerText = thermostat.psmStatus;
+    document.querySelector('#power-saving-status').innerText = thermostat.psmStatus();
     updateTemperature();
   });
 });
